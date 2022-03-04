@@ -24,34 +24,28 @@ form.addEventListener('submit', function (e) {
 
             //loop through restaurants
             restaurants.forEach(restaurant => {
-                console.log(restaurant.cuisines)
                 const cuisineTypes = restaurant.cuisines
+
                 if (selectedOption === "All") {
-                    console.log(restaurant)
+
                     const newDiv = document.createElement("div")
                     newDiv.className = "cards"
-                    const menu = document.createElement("div")
-                    menu.className = "menu"
                     const restName = restaurant.restaurant_name
                     const address = restaurant.address.formatted
                     const phoneNumber = restaurant.restaurant_phone
                     const hours = restaurant.hours
                     const restID = restaurant.restaurant_id
 
-
                     newDiv.innerHTML = `${restName}
                                         <p>${address}</p>
                                         <p>${phoneNumber}</p>
                                         <p>Hours: ${hours}</p>
-                                        <button onclick="myFunction() " id="menu_${restID}" > Menu </button>
+                                        <button id="menu_${restID}" > Menu </button>
                     `;
-
                     displayContainer.append(newDiv)
 
                     document.querySelector(`#menu_${restID}`).addEventListener("click", function (event) {
-
                         event.preventDefault();
-
                         axios({
                             method: 'get',
                             url: `https://api.documenu.com/v2/restaurant/${restID}/menuitems`,
@@ -59,24 +53,15 @@ form.addEventListener('submit', function (e) {
                         })
                             .then(function (response) {
                                 // handle success
-
                                 const restaurantMenuItems = response.data.data;
-                                console.log(response.data.data)
-
                                 //loop through menu items
                                 restaurantMenuItems.forEach(menuItem => {
                                     const menuItemName = menuItem.menu_item_name
-                                    const menuItemPrice = menuItem.menu_item_price
-
                                     const menu = document.createElement("div")
                                     menu.className = "menu"
-
                                     menu.innerHTML = `${menuItemName} - ${menuItemPrice} `
-
                                     newDiv.append(menu)
-
                                 })
-
                             })
                             .catch(function (error) {
                                 // handle error
@@ -89,31 +74,23 @@ form.addEventListener('submit', function (e) {
 
                 }
                 else if (cuisineTypes.includes(selectedOption)) {
-                    console.log(restaurant)
                     const newDiv = document.createElement("div")
                     newDiv.className = "cards"
-                    const menu = document.createElement("div")
-                    menu.className = "menu"
                     const restName = restaurant.restaurant_name
                     const address = restaurant.address.formatted
                     const phoneNumber = restaurant.restaurant_phone
-                    const hours = restaurant.hours
                     const restID = restaurant.restaurant_id
-
 
                     newDiv.innerHTML = `${restName}
                                         <p>${address}</p>
                                         <p>${phoneNumber}</p>
-                                        <p>Hours: ${hours}</p>
-                                        <button onclick="myFunction() " id="menu_${restID}" > Menu </button>
+                                        <button id="menu_${restID}" > Menu </button>
                     `;
 
                     displayContainer.append(newDiv)
 
                     document.querySelector(`#menu_${restID}`).addEventListener("click", function (event) {
-
                         event.preventDefault();
-
                         axios({
                             method: 'get',
                             url: `https://api.documenu.com/v2/restaurant/${restID}/menuitems`,
@@ -121,24 +98,16 @@ form.addEventListener('submit', function (e) {
                         })
                             .then(function (response) {
                                 // handle success
-
                                 const restaurantMenuItems = response.data.data;
                                 console.log(response.data.data)
-
                                 //loop through menu items
                                 restaurantMenuItems.forEach(menuItem => {
                                     const menuItemName = menuItem.menu_item_name
-                                    const menuItemPrice = menuItem.menu_item_price
-
                                     const menu = document.createElement("div")
                                     menu.className = "menu"
-
-                                    menu.innerHTML = `${menuItemName} - ${menuItemPrice} `
-
+                                    menu.innerHTML = `${menuItemName}`
                                     newDiv.append(menu)
-
                                 })
-
                             })
                             .catch(function (error) {
                                 // handle error
@@ -158,7 +127,15 @@ form.addEventListener('submit', function (e) {
             console.log(error)
         })
 
-})
 
+    form.elements.query.addEventListener('focus', function (e) {
+        console.log("change")
+        form.elements.query.value = ''
+        form.elements.cuisine.value = 'Choose a Cuisine'
+        document.querySelector('.display-container').innerHTML = ''
+        console.log("clear all")
+
+    })
+})
 
 
