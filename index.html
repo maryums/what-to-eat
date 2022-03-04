@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Restaurant API</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<div class="container">
+    <h1> I Don't Care, You Pick</h1>
+    <h4>Restaurant & Menu Search Web App</h4>
+
+    <form id="searchForm">
+
+        <input type="text" placeholder="Enter Zip Code" name="query"></input>
+
+        <select name="cuisine" id="cuisine">
+            <option>Choose a Cuisine</option>
+            <option value="All">All</option>
+            <option value="American">American</option>
+            <option value="Italian">Italian</option>
+            <option value="Mexican">Mexican</option>
+            <option value="French">French</option>
+            <option value="Caribbean">Caribbean</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Pizza">Pizza</option>
+            <option value="Diner">Diner</option>
+            <option value="Coffee">Coffee & Tea"</option>
+        </select>
+
+        <button class="submit">Submit</button>
+
+
+    </form>
+
+    <div class="display-container"></div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+
+</html>
