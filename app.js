@@ -17,7 +17,7 @@ form.addEventListener('submit', function (e) {
     axios({
         method: 'get',
         url: `https://api.documenu.com/v2/restaurants/zip_code/${searchTerm}`,
-        headers: { 'X-API-KEY': '159927e582343bbf91bee83ca75eafd5' },
+        headers: { 'X-API-KEY': '8ba349f7dccca46b2af3a67d4aa28869' },
     })
         .then(function (response) {
             const restaurants = response.data.data;
@@ -94,7 +94,7 @@ form.addEventListener('submit', function (e) {
                         axios({
                             method: 'get',
                             url: `https://api.documenu.com/v2/restaurant/${restID}/menuitems`,
-                            headers: { 'X-API-KEY': '159927e582343bbf91bee83ca75eafd5' },
+                            headers: { 'X-API-KEY': '8ba349f7dccca46b2af3a67d4aa28869' },
                         })
                             .then(function (response) {
                                 // handle success
